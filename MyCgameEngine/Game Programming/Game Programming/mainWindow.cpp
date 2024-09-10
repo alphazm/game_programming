@@ -222,7 +222,7 @@ void update(int fps) {
 		//space ship 1
 		
 		spaceShip1->FrameUpdate();
-		spaceShip1->updatePosition(windowRect);
+		spaceShip1->updatePosition();
 		
 		if (diKeys[DIK_W] & 0x80) {
 			spaceShip1->Move(UP);
@@ -241,7 +241,7 @@ void update(int fps) {
 		}
 		//space ship 2
 		spaceShip2->FrameUpdate();
-		spaceShip2->updatePosition(windowRect);
+		spaceShip2->updatePosition();
 		
 		if (diKeys[DIK_UP] & 0x80) {
 			spaceShip2->Move(UP);
@@ -258,7 +258,7 @@ void update(int fps) {
 		{
 			spaceShip2->Move(RIGHT);
 		}
-		circle.sequance(spaceShip1,spaceShip2);
+		circle.Circle(spaceShip1,spaceShip2);
 		
 	}
 }
