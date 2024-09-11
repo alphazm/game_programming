@@ -148,8 +148,15 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="collider.cpp" />
+    <ClCompile Include="Field1.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Window.cpp" />
     <ClCompile Include="Goal.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="mainWindow.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="SpriteRender.cpp" />
@@ -158,8 +165,15 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="collider.h" />
+    <ClInclude Include="Field1.h" />
     <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Window.h" />
     <ClInclude Include="Goal.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="SpriteRender.h" />
   </ItemGroup>
