@@ -14,9 +14,10 @@ public:
 	void beginScene();
 	void endScene();
 	void presentScene();
-	Graphics();
-	~Graphics();
+	void cleanupGraphics();
 private:
 	static Graphics* instance;
+	Graphics();
+	~Graphics();
 };
 

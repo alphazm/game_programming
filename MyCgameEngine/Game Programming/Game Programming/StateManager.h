@@ -1,7 +1,10 @@
 #pragma once
-#include <stack>
-#include"FrameTimer.h"
+#include<vector>
+#include "FrameTimer.h"
 #include "State.h"
+#include "MainMenu.h"
+#include "Field1.h"
+#define FPS 30.0f
 using namespace std;
 
 class StateManager
@@ -15,7 +18,7 @@ public:
 	float elapsedTime;
 	FrameTimer* pTimer;
 	State* currentState;
-	stack<State> stack;
+	vector<State*> scene;
 	void changeGameState(int index);
 private:
 	static StateManager* instance;

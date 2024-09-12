@@ -1,11 +1,11 @@
 #include "Goal.h"
 
-Goal::Goal(int top, int bottom, int left, int right)
+Goal::Goal()
 {
-    rect.top = top;
-    rect.bottom = bottom;
-    rect.right = right;
-    rect.left = left;
+    rect.top = 10;
+    rect.bottom = 10;
+    rect.right = 80;
+    rect.left = 80;
 }
 
 RECT* Goal::GetRect()

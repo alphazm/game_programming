@@ -1,10 +1,2 @@
-﻿  AudioManager.cpp
-C:\Users\Lenovo\source\repos\alphazm\MyCgameEngine\Game Programming\Game Programming\AudioManager.cpp(18,24): warning C4305: 'argument': truncation from 'double' to 'float'
-  collider.cpp
-  mainWindow.cpp
-  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\Lenovo\source\repos\alphazm\MyCgameEngine\Game Programming\Game Programming\mainWindow.cpp(163,32): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Lenovo\source\repos\alphazm\MyCgameEngine\Game Programming\Game Programming\mainWindow.cpp(172,32): warning C4305: 'argument': truncation from 'double' to 'float'
-  SpaceShip.cpp
-  Generating Code...
-  Game Programming.vcxproj -> C:\Users\Lenovo\source\repos\alphazm\MyCgameEngine\Game Programming\Debug\Game Programming.exe
+﻿  Window.cpp
+  Game Programming.vcxproj -> C:\Users\Lenovo\Source\Repos\alphazm\game_programming\MyCgameEngine\Game Programming\Debug\Game Programming.exe
