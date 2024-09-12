@@ -16,10 +16,10 @@ SpaceShip::~SpaceShip()
 	timer = NULL;
 }
 
-void SpaceShip::Initialize(LPDIRECT3DDEVICE9 device, float playerRotation, int playerNumber, D3DXVECTOR2 startingPosition, int objectNumber)
+void SpaceShip::Initialize(LPDIRECT3DDEVICE9 device, LPD3DXSPRITE sprite, D3DXVECTOR2 startingPosition, int objectNumber)
 {
-	D3DXCreateSprite(device, &sprite);
-	D3DXCreateTextureFromFile(device, "assets/spaceShip.png", &texture);
+	this->sprite = sprite;
+	D3DXCreateTextureFromFile(device,"assets/spaceShip.png", &texture);
 	timer = new FrameTimer;
 	timer->Init(30);
 	textureHeight = 64;
@@ -35,8 +35,8 @@ void SpaceShip::Initialize(LPDIRECT3DDEVICE9 device, float playerRotation, int p
 	scalingCenter = { 0,0 };
 	spriteCenter = { (float)spriteWidth / 2,(float)spriteHeight / 2 };
 	scalingRotation = 0.0f;
-	rotation = playerRotation;
-	player = playerNumber;
+	rotation = 0.0;
+	player = 0.0;
 	object = objectNumber;
 	force = { 0,0 };
 	acceleration = { 0,0 };
@@ -45,6 +45,7 @@ void SpaceShip::Initialize(LPDIRECT3DDEVICE9 device, float playerRotation, int p
 	mass = 100;
 	enginePower = 50;
 	friction = 0.0f;
+	force = { 0,0 };
 }
 
 void SpaceShip::Update()
@@ -75,10 +76,25 @@ void SpaceShip::SetTransformation()
 
 void SpaceShip::Draw()
 {
-	sprite->Begin(D3DXSPRITE_ALPHABLEND);
+	//sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	SetTransformation();
 	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	sprite->End();
+	//sprite->End();
+}
+
+void SpaceShip::setFriction(float value)
+{
+	this->friction = value;
+}
+
+void SpaceShip::setRotation(float value)
+{
+	this->rotation = value;
+}
+
+void SpaceShip::setPlayerNumber(int value)
+{
+	this->player = value;
 }
 
 
