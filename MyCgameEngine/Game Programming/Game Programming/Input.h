@@ -8,6 +8,7 @@ public:
 	bool createInput();
 	void update();
 	void release();
+	const BYTE* getKeyboardState() const;
 	bool EscapeKeyPressed();
 	bool MouseButtonPressed(int button);
 	bool MouseButtonClick(int button);
@@ -40,4 +41,3 @@ private:
 		int y;
 	} mousePosition;
 };
-

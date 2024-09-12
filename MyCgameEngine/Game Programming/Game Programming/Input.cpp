@@ -2,9 +2,9 @@
 Input* Input::instance = 0;
 Input* Input::getInstance()
 {
-    if(!instance)
-        instance = new Input;
-    return instance;
+	if (!instance)
+		instance = new Input;
+	return instance;
 }
 
 bool Input::createInput()
@@ -36,14 +36,14 @@ void Input::update()
 	Input::ReadMouse();
 	mousePosition.x += mouseState.lX;
 	mousePosition.y += mouseState.lY;
-	if (mousePosition.x < 0) 
-		mousePosition.x = 0; 
+	if (mousePosition.x < 0)
+		mousePosition.x = 0;
 	if (mousePosition.y < 0)
-		mousePosition.y = 0; 
-	if (mousePosition.x > WIN_WIDTH) 
-		mousePosition.x = WIN_WIDTH; 
-	if (mousePosition.y > WIN_HEIGHT) 
-		mousePosition.y = WIN_HEIGHT; 
+		mousePosition.y = 0;
+	if (mousePosition.x > WIN_WIDTH)
+		mousePosition.x = WIN_WIDTH;
+	if (mousePosition.y > WIN_HEIGHT)
+		mousePosition.y = WIN_HEIGHT;
 }
 
 void Input::release()
@@ -225,4 +225,8 @@ bool Input::leftMouseKey()
 		return true;
 	else
 		return false;
+}
+
+const BYTE* Input::getKeyboardState() const {
+	return diKeys;
 }

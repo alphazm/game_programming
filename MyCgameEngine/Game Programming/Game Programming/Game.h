@@ -3,6 +3,9 @@
 #include"Graphics.h"
 #include"Input.h"
 #include"StateManager.h"
+#include "GameUI.h"
+#include "Sprite.h"
+#include <vector>
 class Game
 {
 public:
@@ -14,5 +17,7 @@ private:
 	Graphics* pGraphics;
 	Input* pInput;
 	StateManager* pManager;
+	GameUI* pGameUI;
+	std::vector<Sprite*> gameObjects;
 };
 
