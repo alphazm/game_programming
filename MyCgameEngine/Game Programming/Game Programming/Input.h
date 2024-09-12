@@ -15,6 +15,15 @@ public:
 	bool KeyboardKeyPressed(int code);
 	bool ReadKeyboard();
 	bool ReadMouse();
+	bool wKey();
+	bool aKey();
+	bool sKey();
+	bool dKey();
+	bool upKey();
+	bool leftKey();
+	bool downKey();
+	bool RightKey();
+	bool leftMouseKey();
 private:
 	Input();
 	~Input();

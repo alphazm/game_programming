@@ -154,3 +154,75 @@ bool Input::ReadMouse()
 	}
 	return true;
 }
+
+bool Input::wKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::aKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::sKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::dKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::upKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::leftKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::downKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::RightKey()
+{
+	if (KeyboardKeyHold(DIK_W))
+		return true;
+	else
+		return false;
+}
+
+bool Input::leftMouseKey()
+{
+	if (MouseButtonClick(DIMOFS_BUTTON0))
+		return true;
+	else
+		return false;
+}

@@ -1,7 +1,8 @@
 #pragma once
+#define WIN32_LEAN_AND_MEAN
 #include<Windows.h>
-#define WIN_WIDTH 720
-#define WIN_HEIGHT 480
+#define WIN_WIDTH 1080
+#define WIN_HEIGHT 720
 class Window
 {
 public:
@@ -9,6 +10,7 @@ public:
 	void createWindow();
 	bool windowIsRunning();
 	void fullscreenHandle();
+	void cleanupWindow();
 	HWND getHWND();
 	Window();
 	~Window();

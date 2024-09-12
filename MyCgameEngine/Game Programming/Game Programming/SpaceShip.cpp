@@ -1,93 +1,87 @@
 #include "SpaceShip.h"
 #include <iostream>
-using namespace std;
+
+SpaceShip::SpaceShip()
+{
+	texture = NULL;
+	sprite = NULL;
+}
 SpaceShip::~SpaceShip()
 {
+	sprite->Release();
+	sprite = NULL;
+	texture->Release();
+	texture = NULL;
+	delete timer;
+	timer = NULL;
 }
 
-
-void SpaceShip::setMass(float mass)
+void SpaceShip::Initialize(LPDIRECT3DDEVICE9 device, float playerRotation, int playerNumber, D3DXVECTOR2 startingPosition, int objectNumber)
 {
-	this->mass = mass;
+	D3DXCreateSprite(device, &sprite);
+	D3DXCreateTextureFromFile(device, "assets/spaceShip.png", &texture);
+	timer = new FrameTimer;
+	timer->Init(30);
+	textureHeight = 64;
+	textureWidth = 64;
+	textureCol = 2;
+	textureRow = 2;
+	spriteWidth = textureWidth / textureCol;
+	spriteHeight = textureHeight / textureRow;
+	maxFrame = 2;
+	spriteCurrentFrame = 0;
+	divisor = 4;
+	position = startingPosition;
+	scalingCenter = { 0,0 };
+	spriteCenter = { (float)spriteWidth / 2,(float)spriteHeight / 2 };
+	scalingRotation = 0.0f;
+	rotation = playerRotation;
+	player = playerNumber;
+	object = objectNumber;
+	force = { 0,0 };
+	acceleration = { 0,0 };
+	velocity = { 0,0 };
+	rotationSpeed = 0.5f;
+	mass = 100;
+	enginePower = 50;
+	friction = 0.0f;
 }
 
-void SpaceShip::setRotateSpeed(float rotationSpeed)
+void SpaceShip::Update()
 {
-	this->rotationSpeed = rotationSpeed;
-}
-
-void SpaceShip::setInitialForce(float value)
-{
-	this->initialforce = value;
-}
-
-void SpaceShip::setAcceleration(D3DXVECTOR2 accelerate)
-{
-	this->accelerate = accelerate;
-}
-
-void SpaceShip::Move(Key key)
-{
-	switch (key)
+	int fps = timer->FramesToUpdate();
+	for (int i = 0; i < fps; i++)
 	{
-	case UP:
-		accelerate = D3DXVECTOR2((initialforce / mass), (initialforce / mass));
-		break;
-	case LEFT:
-		updateRotateValue(-rotationSpeed);
-		break;
-	case RIGHT:
-		updateRotateValue(rotationSpeed);
-		break;
-	case DOWN:
-		accelerate = D3DXVECTOR2(- (initialforce / mass),-(initialforce / mass));
-		break;
-	default:
-		break;
+		frameCounter++;
+		if (frameCounter % divisor == 0) {
+			spriteCurrentFrame++;
+		}
+		if (spriteCurrentFrame > maxFrame)
+		{
+			spriteCurrentFrame = 0;
+		}
 	}
+	spriteRect.left = spriteWidth * player;
+	spriteRect.top = spriteCurrentFrame % textureRow * (spriteHeight);
+	spriteRect.right = spriteRect.left + spriteWidth;
+	spriteRect.bottom = spriteRect.top + spriteHeight;
 }
 
-void SpaceShip::setFiction(float friction)
+void SpaceShip::SetTransformation()
 {
-	this->friction = friction;
+	D3DXMatrixTransformation2D(&mat, &scalingCenter, scalingRotation, &scaling, &spriteCenter, rotation, &position);
+	sprite->SetTransform(&mat);
 }
 
-void SpaceShip::updatePosition()
+void SpaceShip::Draw()
 {
-	D3DXVECTOR2 direction = D3DXVECTOR2(-cos(getRotateValue()), -sin(getRotateValue()));
-	accelerate.x *= direction.x;
-	accelerate.y *= direction.y;
-	velocity += accelerate;
-	velocity *= friction;
-	position += velocity;
-	settranslation(position);
+	sprite->Begin(D3DXSPRITE_ALPHABLEND);
+	SetTransformation();
+	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->End();
 }
 
-void SpaceShip::setPosition(D3DXVECTOR2 position)
-{
-	this->position = position;
-	settranslation(position);
-}
 
-void SpaceShip::setVector(D3DXVECTOR2 velocity)
-{
-	this->velocity = velocity;
-}
-
-D3DXVECTOR2 SpaceShip::getPosition()
-{
-	return position;
-}
-
-D3DXVECTOR2 SpaceShip::getVector()
-{
-	return velocity;
-}
-
-float SpaceShip::getMass()
-{
-	return mass;
-}
 
 
 

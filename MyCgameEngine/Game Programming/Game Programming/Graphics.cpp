@@ -53,6 +53,10 @@ Graphics::Graphics()
 
 Graphics::~Graphics()
 {
+	
+}
+
+void Graphics::cleanupGraphics() {
 	d3dDevice->Release();
 	d3dDevice = NULL;
 	direct3D9->Release();

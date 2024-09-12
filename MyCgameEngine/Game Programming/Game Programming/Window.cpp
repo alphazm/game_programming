@@ -50,7 +50,7 @@ void Window::createWindow()
 	wndClass.lpszClassName = "My Window";
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
 	RegisterClass(&wndClass);
-	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "Spaceship Football", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, WIN_HEIGHT, WIN_WIDTH, NULL, NULL, wndClass.hInstance, NULL);
+	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "Spaceship Football", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, WIN_WIDTH, WIN_HEIGHT, NULL, NULL, wndClass.hInstance, NULL);
 	ShowWindow(g_hWnd, 1);
 	ShowCursor(false);
 	GetWindowRect(g_hWnd, &windowRect);
@@ -73,7 +73,16 @@ HWND Window::getHWND()
     return this->g_hWnd;
 }
 
+Window::Window()
+{
+}
+
 Window::~Window()
+{
+	
+}
+
+void Window::cleanupWindow()
 {
 	UnregisterClass(wndClass.lpszClassName, hInstance);
 	delete instance;

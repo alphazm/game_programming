@@ -1,33 +1,30 @@
 #pragma once
 #include <d3dx9.h>
-#include "SpriteRender.h"
-#include "Friction.h"
-enum Key {UP,LEFT,RIGHT,DOWN};
+#include"FrameTimer.h"
+#include"GameObject.h"
 
-class SpaceShip:public SpriteRender
+class SpaceShip:public GameObject
 {
 public:
+	SpaceShip();
 	~SpaceShip();
-	void setMass(float mass);
-	void setRotateSpeed(float rotationSpeed);
-	void setInitialForce(float value);
-	void setAcceleration(D3DXVECTOR2 accelerate);
-	void Move(Key key);
-	void setFiction(float friction);
-	void updatePosition();
-	void setPosition(D3DXVECTOR2 position);
-	void setVector(D3DXVECTOR2 vector);
-	D3DXVECTOR2 getPosition();
-	D3DXVECTOR2 getVector();
-	float getMass();
-	
-private:
-	float mass;
-	float rotationSpeed;
-	float initialforce;
+	void Initialize(LPDIRECT3DDEVICE9 device, float rotation, int playerNumber, D3DXVECTOR2 objectPosition, int objectNumber);
+	void Update();
+	void SetTransformation();
+	void Draw();
+	LPDIRECT3DTEXTURE9 texture;
+	LPD3DXSPRITE sprite;
+	FrameTimer* timer;
 	D3DXVECTOR2 velocity;
-	D3DXVECTOR2 position;
-	D3DXVECTOR2 accelerate;
+	D3DXVECTOR2 acceleration;
+	D3DXVECTOR2 force;
+	float mass;
+	int player;
+	int frameCounter;
+	int maxFrame;
+	int divisor;
+	float enginePower;
 	float friction;
+	float rotationSpeed;
 };
 
