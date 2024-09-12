@@ -9,6 +9,7 @@
 #include "SpaceShip.h"
 #include "collider.h"
 #include "AudioManager.h"
+#include "GameUI.h"
 //--------------------------------------------------------------------
 using namespace std;
 
@@ -54,6 +55,8 @@ FrameTimer* gameTimer = new FrameTimer();
 AudioManager* myAudioManager = new AudioManager();
 SpaceShip* spaceShip1= new SpaceShip();
 SpaceShip* spaceShip2 = new SpaceShip();
+
+GameUI* gameUI;
 
 D3DXMATRIX mat;
 collider circle = collider();
@@ -175,6 +178,9 @@ void initial() {
 	//sound
 	myAudioManager->initialize();
 	myAudioManager->loadSounds();
+	//gameui
+	gameUI = new GameUI(d3dDevice);
+	gameUI->Initialize();
 	
 	//set cursor starting potition
 	startMouseX = (windowRect.right - windowRect.left) / 2;
@@ -219,46 +225,59 @@ void getInput() {
 
 void update(int fps) {
 	for (int i = 0; i < fps; i++) {
-		//space ship 1
+		//game ui
+		gameUI->Update(diKeys);
+		if (gameUI->GetState() == UIState::MAIN_MENU) {
+			if (diKeys[DIK_RETURN] & 0x80) {
+				// If Enter is pressed in the main menu, start the game
+				if (gameUI->GetSelectedItemIndex() == 0) {
+					gameUI->SetState(UIState::IN_GAME);
+				}
+			}
+		}
+		if (gameUI->GetState() == UIState::IN_GAME) {
+			//space ship 1
+
+			spaceShip1->FrameUpdate();
+			spaceShip1->updatePosition();
+
+			if (diKeys[DIK_W] & 0x80) {
+				spaceShip1->Move(UP);
+			}
+			if (diKeys[DIK_S] & 0x80)
+			{
+				spaceShip1->Move(DOWN);
+			}
+			if (diKeys[DIK_A] & 0x80)
+			{
+				spaceShip1->Move(LEFT);
+			}
+			if (diKeys[DIK_D] & 0x80)
+			{
+				spaceShip1->Move(RIGHT);
+			}
+			//space ship 2
+			spaceShip2->FrameUpdate();
+			spaceShip2->updatePosition();
+
+			if (diKeys[DIK_UP] & 0x80) {
+				spaceShip2->Move(UP);
+			}
+			if (diKeys[DIK_DOWN] & 0x80)
+			{
+				spaceShip2->Move(DOWN);
+			}
+			if (diKeys[DIK_LEFT] & 0x80)
+			{
+				spaceShip2->Move(LEFT);
+			}
+			if (diKeys[DIK_RIGHT] & 0x80)
+			{
+				spaceShip2->Move(RIGHT);
+			}
+			circle.Circle(spaceShip1, spaceShip2);
+		}
 		
-		spaceShip1->FrameUpdate();
-		spaceShip1->updatePosition();
-		
-		if (diKeys[DIK_W] & 0x80) {
-			spaceShip1->Move(UP);
-		}
-		if (diKeys[DIK_S] & 0x80)
-		{
-			spaceShip1->Move(DOWN);
-		}
-		if (diKeys[DIK_A] & 0x80)
-		{
-			spaceShip1->Move(LEFT);
-		}
-		if (diKeys[DIK_D] & 0x80)
-		{
-			spaceShip1->Move(RIGHT);
-		}
-		//space ship 2
-		spaceShip2->FrameUpdate();
-		spaceShip2->updatePosition();
-		
-		if (diKeys[DIK_UP] & 0x80) {
-			spaceShip2->Move(UP);
-		}
-		if (diKeys[DIK_DOWN] & 0x80)
-		{
-			spaceShip2->Move(DOWN);
-		}
-		if (diKeys[DIK_LEFT] & 0x80)
-		{
-			spaceShip2->Move(LEFT);
-		}
-		if (diKeys[DIK_RIGHT] & 0x80)
-		{
-			spaceShip2->Move(RIGHT);
-		}
-		circle.Circle(spaceShip1,spaceShip2);
 		
 	}
 }
@@ -269,14 +288,18 @@ void Render() {
 	d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 255, 0), 1.0f, 0);
 	//	Begin the scene
 	d3dDevice->BeginScene();
-	//	Drawing.
-	sprite->Begin(D3DXSPRITE_ALPHABLEND);
-	//sprite->Draw(spaceShip1->getTexture(), spaceShip1->GetRect(), NULL, NULL,D3DCOLOR_XRGB(255,255,255));
-	sprite->SetTransform(spaceShip1->getMat());
-	spaceShip1->Render(sprite);
-	sprite->SetTransform(spaceShip2->getMat());
-	spaceShip2->Render(sprite);
-	sprite->End();
+	gameUI->Render();
+	if (gameUI->GetState() == UIState::IN_GAME) {
+		//	Drawing.
+		sprite->Begin(D3DXSPRITE_ALPHABLEND);
+		//sprite->Draw(spaceShip1->getTexture(), spaceShip1->GetRect(), NULL, NULL,D3DCOLOR_XRGB(255,255,255));
+		sprite->SetTransform(spaceShip1->getMat());
+		spaceShip1->Render(sprite);
+		sprite->SetTransform(spaceShip2->getMat());
+		spaceShip2->Render(sprite);
+		sprite->End();
+	}
+	
 	//	End the scene
 	d3dDevice->EndScene();
 	//	Present the back buffer to screen
@@ -295,6 +318,7 @@ void cleanupWindow() {
 
 	delete spaceShip1;
 	delete spaceShip2;
+	delete gameUI;
 
 	//	Release keyboard device.
 	dInputKeyboardDevice->Unacquire();
