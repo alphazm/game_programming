@@ -6,7 +6,7 @@ class GameObject
 public:
 	GameObject();
 	virtual ~GameObject();
-	virtual void Initialize(LPDIRECT3DDEVICE9 device, LPD3DXSPRITE sprite, D3DXVECTOR2 objectPosition, int objectNumber) = 0;
+	virtual void Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 objectPosition, int objectNumber) = 0;
 	virtual void Update() = 0;
 	virtual void SetTransformation() = 0;
 	virtual void Draw() = 0;

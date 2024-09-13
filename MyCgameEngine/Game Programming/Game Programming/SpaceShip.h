@@ -8,7 +8,7 @@ class SpaceShip:public GameObject
 public:
 	SpaceShip();
 	~SpaceShip();
-	void Initialize(LPDIRECT3DDEVICE9 device, LPD3DXSPRITE sprite, D3DXVECTOR2 objectPosition, int objectNumber);
+	void Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 objectPosition, int objectNumber);
 	void Update();
 	void SetTransformation();
 	void Draw();
@@ -20,7 +20,7 @@ public:
 	FrameTimer* timer;
 	D3DXVECTOR2 velocity;
 	D3DXVECTOR2 acceleration;
-	D3DXVECTOR2 force;
+	D3DXVECTOR2 direction;
 	float mass;
 	int player;
 	int frameCounter;

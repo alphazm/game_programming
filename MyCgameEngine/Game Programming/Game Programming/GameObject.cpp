@@ -8,7 +8,7 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::Initialize(LPDIRECT3DDEVICE9 device, LPD3DXSPRITE sprite, D3DXVECTOR2 objectPosition, int objectNumber)
+void GameObject::Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 objectPosition, int objectNumber)
 {
 }
 
