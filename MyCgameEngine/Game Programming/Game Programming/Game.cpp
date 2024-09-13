@@ -3,9 +3,7 @@
 
 void Game::init()
 {
-	myAudioManager->initialize();
-	myAudioManager->loadSounds();
-	myAudioManager->playSoundTrack();
+	
 
 	pWindow = pWindow->getInstance();
 	pWindow->createWindow();
