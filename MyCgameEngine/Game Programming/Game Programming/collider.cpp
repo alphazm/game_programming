@@ -38,7 +38,7 @@ bool collider::isCollide(SpaceShip* spaceShip)
 	//if (spaceShip->spriteWidth / 2 + OtherSpaceShip->spriteWidth / 2 > D3DXVec2Length(&distanceVector)) {
 	// return true;
 	//}
-	//return false
+	return false;
 }
 
 void collider::inside(SpaceShip* spaceShip, RECT* field, D3DXVECTOR3* Fposition)

@@ -1,2 +1,17 @@
-﻿  collider.cpp
-  Game Programming.vcxproj -> C:\Users\Lenovo\Source\Repos\alphazm\game_programming\MyCgameEngine\Game Programming\Debug\Game Programming.exe
+﻿  Field1.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\Field1.cpp(48,26): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\Field1.cpp(52,26): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\Field1.cpp(54,23): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\Field1.cpp(90,4): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\Field1.cpp(93,4): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\Field1.cpp(120,20): warning C4018: '<': signed/unsigned mismatch
+  Game.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  StateManager.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  collider.cpp
+  mainWindow.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Generating Code...
+C:\Users\Lenovo\source\repos\alphazm\game_programming\MyCgameEngine\Game Programming\Game Programming\collider.cpp(42): error C4716: 'collider::isCollide': must return a value
