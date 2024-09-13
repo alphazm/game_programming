@@ -18,8 +18,8 @@ void Graphics::createDevice()
 	d3dPP.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dPP.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dPP.BackBufferCount = 1;
-	d3dPP.BackBufferWidth = WIN_WIDTH;
-	d3dPP.BackBufferHeight = WIN_HEIGHT;
+	d3dPP.BackBufferWidth = 900;	
+	d3dPP.BackBufferHeight = 600;
 	d3dPP.hDeviceWindow = pWindow->getHWND();
 	direct3D9->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, pWindow->getHWND(), D3DCREATE_SOFTWARE_VERTEXPROCESSING, & d3dPP, & d3dDevice);
 	

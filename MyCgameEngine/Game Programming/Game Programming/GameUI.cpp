@@ -10,7 +10,7 @@ GameUI::GameUI(IDirect3DDevice9* device) : d3dDevice(device), currentState(UISta
         OutputDebugStringA("Sprite created successfully\n");
     }
 
-    hr = D3DXCreateFont(d3dDevice, 30, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial", &font);
+    hr = D3DXCreateFont(d3dDevice, 40, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Courier New", &font);
     if (FAILED(hr)) {
         OutputDebugStringA("Failed to create font\n");
     }
@@ -22,10 +22,19 @@ GameUI::GameUI(IDirect3DDevice9* device) : d3dDevice(device), currentState(UISta
 GameUI::~GameUI() {
     if (sprite) sprite->Release();
     if (font) font->Release();
+    if (backgroundTexture) backgroundTexture->Release();
 }
 
 void GameUI::Initialize() {
     menuItems = { "Start Game", "Game Settings", "Exit" };
+    HRESULT hr = D3DXCreateTextureFromFile(d3dDevice, "assets/bg5.jpg", &backgroundTexture);
+    if (FAILED(hr)) {
+        OutputDebugStringA("Failed to load background texture\n");
+    }
+    hr = D3DXCreateTextureFromFile(d3dDevice, "assets/logo4.png", &logoTexture); 
+    if (FAILED(hr)) {
+        OutputDebugStringA("Failed to load logo texture\n");
+    }
 }
 
 void GameUI::Update(const BYTE* diKeys) {
@@ -85,6 +94,34 @@ void GameUI::Render() {
         OutputDebugStringA("Failed to begin sprite\n");
         return;
     }
+    if (backgroundTexture) {
+        D3DXVECTOR3 backgroundPosition(0.0f, 0.0f, 0.0f);
+        RECT destRect;
+        destRect.left = 0;
+        destRect.top = 0;
+        destRect.right = 900;
+        destRect.bottom = 600;
+        
+        sprite->Draw(backgroundTexture, &destRect, NULL, &backgroundPosition, D3DCOLOR_XRGB(255, 255, 255));
+    }
+    // Draw the logo texture
+    if (logoTexture) {
+       
+        D3DXVECTOR3 logoPosition((900 - newWidth) / 2.0f, 70.0f, 0.0f); 
+        RECT logoRect = { 0, 0, originalWidth, originalHeight }; 
+
+   
+        D3DXMatrixScaling(&scaleMatrix, scaleX, scaleY, 1.0f);
+        sprite->SetTransform(&scaleMatrix);
+
+        // Draw the logo
+        sprite->Draw(logoTexture, &logoRect, NULL, &logoPosition, D3DCOLOR_XRGB(255, 255, 255));
+
+    
+        D3DXMATRIX identityMatrix;
+        D3DXMatrixIdentity(&identityMatrix);
+        sprite->SetTransform(&identityMatrix);
+    }
 
     for (size_t i = 0; i < menuItems.size(); ++i) {
         RECT textRect = { 0, 0, 0, 0 };
@@ -98,9 +135,8 @@ void GameUI::Render() {
         int textHeight = textRect.bottom - textRect.top;
 
         // text position
-        D3DXVECTOR3 position((1080 - textWidth) / 2.0f, (720 / 2.0f) + (i * 60.0f) - (menuItems.size() * 30.0f), 0.0f);
+        D3DXVECTOR3 position((900 - textWidth) / 2.0f, (600 / 2.0f) + (i * 60.0f) - (menuItems.size() * 30.0f), 0.0f);
 
-        // set text rect
         textRect.left = static_cast<LONG>(position.x);
         textRect.top = static_cast<LONG>(position.y);
         textRect.right = textRect.left + textWidth;

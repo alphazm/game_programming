@@ -5,6 +5,7 @@
 #include"StateManager.h"
 #include "GameUI.h"
 #include "Sprite.h"
+#include "FrameTimer.h"
 #include <vector>
 class Game
 {
@@ -19,5 +20,6 @@ private:
 	StateManager* pManager;
 	GameUI* pGameUI;
 	std::vector<Sprite*> gameObjects;
+	FrameTimer* pFrameTimer;
 };
 
