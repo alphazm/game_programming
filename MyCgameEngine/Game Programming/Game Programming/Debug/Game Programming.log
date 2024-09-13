@@ -1,18 +1,3 @@
-﻿  Ball.cpp
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Ball.cpp(84,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Field1.cpp
+﻿  MainMenu.cpp
   C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  FrameTimer.cpp
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\FrameTimer.cpp(21,32): warning C4244: '=': conversion from 'LONGLONG' to 'float', possible loss of data
-  Game.cpp
-  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  GameUI.cpp
-  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  SpaceShip.cpp
-  StateManager.cpp
-  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  collider.cpp
-  mainWindow.cpp
-  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Generating Code...
   Game Programming.vcxproj -> C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Debug\Game Programming.exe

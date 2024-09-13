@@ -1,37 +1,15 @@
 #pragma once
 #include <d3d9.h>
-#include <d3dx9.h>
-#include <vector>
-#include <string>
+#include "MainMenu.h"
 
 enum class UIState { MAIN_MENU, GAME_SETTINGS, IN_GAME, PAUSE_MENU };
 
 class GameUI {
 private:
     IDirect3DDevice9* d3dDevice;
-    LPD3DXSPRITE sprite;
-    LPD3DXFONT font;
-    LPDIRECT3DTEXTURE9 backgroundTexture;
-    LPDIRECT3DTEXTURE9 logoTexture; 
-    LPDIRECT3DTEXTURE9 menuTexture;
     UIState currentState;
-    std::vector<std::string> menuItems;
-    int selectedItemIndex;
-    int backgroundWidth = 720;
-    int backgroundHeight = 480;
+    MainMenu* mainMenu;
 
-    
-
-    int originalWidth = 512;
-    int originalHeight = 512;
-    
-    float scaleX = 1.25f; 
-    float scaleY = 1.25f;
-    int newWidth = static_cast<int>(originalWidth * scaleX);
-    int newHeight = static_cast<int>(originalHeight * scaleY);
-   
-    D3DXMATRIX scaleMatrix;
-    float deltaTime;
 public:
     GameUI(IDirect3DDevice9* device);
     ~GameUI();

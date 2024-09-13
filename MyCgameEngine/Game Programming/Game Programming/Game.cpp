@@ -32,14 +32,14 @@ void Game::update()
 		pGraphics->clearBuffer();
 		pGraphics->beginScene();
 
-		if (pGameUI->GetState() == UIState::MAIN_MENU) {
-			pGameUI->Render(); // render menu
-		}
-		else if (pGameUI->GetState() == UIState::IN_GAME) {
+		pGameUI->Render();
+
+		if (pGameUI->GetState() == UIState::IN_GAME) {
 			for (auto obj : gameObjects) {
-				obj->render(pGraphics->d3dDevice); //rendergame
+				obj->render(pGraphics->d3dDevice);
 			}
 		}
+
 		pGraphics->endScene();
 		pGraphics->presentScene();
 	}
