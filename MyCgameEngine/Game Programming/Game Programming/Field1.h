@@ -38,5 +38,6 @@ private:
 	vector<GameObject*> gameObjects;
 	collider collider;
 	D3DXMATRIX mat;
+	FrameTimer* timer;
 };
 

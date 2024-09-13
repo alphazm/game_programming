@@ -8,7 +8,7 @@ class Ball :public GameObject
 public:
 	Ball();
 	~Ball();
-	void Initialize(LPDIRECT3DDEVICE9 device, LPD3DXSPRITE sprite, D3DXVECTOR2 objectPosition, int objectNumber);
+	void Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 objectPosition, int objectNumber);
 	void Update();
 	void SetTransformation();
 	void Draw();

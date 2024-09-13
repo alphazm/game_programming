@@ -30,53 +30,64 @@ bool collider::isCollide(RECT* button, RECT* cursor)
 
 }
 
-void collider::inside(SpaceShip* spaceShip, RECT* field)
+bool collider::isCollide(SpaceShip* spaceShip)
+{
+	//D3DXVECTOR2 v1 = spaceShip->velocity;
+	//D3DXVECTOR2 v2 = OtherSpaceShip->velocity;
+	//D3DXVECTOR2 distanceVector = spaceShip->position - OtherSpaceShip->position;
+	//if (spaceShip->spriteWidth / 2 + OtherSpaceShip->spriteWidth / 2 > D3DXVec2Length(&distanceVector)) {
+	// return true;
+	//}
+	//return false
+}
+
+void collider::inside(SpaceShip* spaceShip, RECT* field, D3DXVECTOR3* Fposition)
 {
 	D3DXVECTOR2 position = spaceShip->position;
 	D3DXVECTOR2 velocity = spaceShip->velocity;
-	if (position.x < field->left) {
+	if (position.x < field->left + Fposition->x) {
 
 		velocity.x *= -1;
 	}
-	if (position.x > field->right - spaceShip->spriteWidth) {
+	if (position.x > field->right + Fposition->x - spaceShip->spriteWidth) {
 
 		velocity.x *= -1;
 	}
-	if (position.y < field->top) {
+	if (position.y < field->top + Fposition->y) {
 
 		velocity.y *= -1;
 	}
-	if (position.y > field->bottom - spaceShip->spriteHeight) {
+	if (position.y > field->bottom + Fposition->y - spaceShip->spriteHeight) {
 
 		velocity.y *= -1;
 	}
 	spaceShip->velocity = velocity;
 }
 
-void collider::inside(Ball* ball, RECT* field)
+void collider::inside(Ball* ball, RECT* field, D3DXVECTOR3* Fposition)
 {
 	D3DXVECTOR2 position = ball->position;
 	D3DXVECTOR2 velocity = ball->velocity;
-	if (position.x < field->left) {
+	if (position.x < field->left + Fposition->x) {
 
 		velocity.x *= -1;
 	}
-	if (position.x > field->right - ball->spriteWidth) {
+	if (position.x > field->right + Fposition->x - ball->spriteWidth) {
 
 		velocity.x *= -1;
 	}
-	if (position.y < field->top) {
+	if (position.y < field->top + Fposition->y) {
 
 		velocity.y *= -1;
 	}
-	if (position.y > field->bottom - ball->spriteHeight) {
+	if (position.y > field->bottom + Fposition->y - ball->spriteHeight) {
 
 		velocity.y *= -1;
 	}
 	ball->velocity=velocity;
 }
 
-bool collider::leftGoal(Ball* ball, RECT* goal, RECT* field)
+bool collider::leftGoal(Ball* ball, RECT* goal, RECT* field, D3DXVECTOR3* position)
 {
 	// Check left goal area
 	if (ball->position.x < field->left && ball->position.y >((field->bottom - field->top) - (goal->bottom - goal->top)) / 2 &&
@@ -85,7 +96,7 @@ bool collider::leftGoal(Ball* ball, RECT* goal, RECT* field)
 	}
 	return false;
 }
-bool collider::rightGoal(Ball* ball, RECT* goal, RECT* field)
+bool collider::rightGoal(Ball* ball, RECT* goal, RECT* field, D3DXVECTOR3* position)
 {
 	// Check right goal area
 	if (ball->position.x > field->right && ball->position.y > ((field->bottom - field->top) - (goal->bottom - goal->top)) / 2 &&
@@ -100,18 +111,18 @@ void collider::Circle(SpaceShip* spaceShip, SpaceShip* OtherSpaceShip)
 	D3DXVECTOR2 v1 = spaceShip->velocity;
 	D3DXVECTOR2 v2 = OtherSpaceShip->velocity;
 	D3DXVECTOR2 distanceVector = spaceShip->position - OtherSpaceShip->position;
-	if (spaceShip->spriteWidth / 2.1 + OtherSpaceShip->spriteWidth / 2.1 > D3DXVec2Length(&distanceVector)) {
-		D3DXVec2Normalize(&distanceVector, &distanceVector); //normalize distance vector 
-		D3DXVECTOR2 v1n = distanceVector * D3DXVec2Dot(&v1, &distanceVector); //vector 1 . n * n; normal component before collision 
-		D3DXVECTOR2 v2n = distanceVector * D3DXVec2Dot(&v2, &distanceVector);
-		D3DXVECTOR2 v1t = v1 - v1n; // tangent component 
-		D3DXVECTOR2 v2t = v2 - v2n;
-		D3DXVECTOR2 newV1n = (((spaceShip->mass - OtherSpaceShip->mass) * v1n) + (2 * OtherSpaceShip->mass * v2n)) / (spaceShip->mass + OtherSpaceShip->mass); //after collision change the normal; find the new normal with mass; refer wiki 
-		D3DXVECTOR2 newV2n = (((OtherSpaceShip->mass - spaceShip->mass) * v2n) + (2 * spaceShip->mass * v1n)) / (spaceShip->mass + OtherSpaceShip->mass);
-		D3DXVECTOR2 newV1 = newV1n + v1t;//form the new vactor 
-		D3DXVECTOR2 newV2 = newV2n + v2t;
-		spaceShip->velocity = (newV1);
-		OtherSpaceShip->velocity = (newV2);
+	if (spaceShip->spriteWidth / 2 + OtherSpaceShip->spriteWidth / 2 > D3DXVec2Length(&distanceVector)) {
+		float distance = D3DXVec2Length(&distanceVector);
+		D3DXVECTOR2 normal = distanceVector / distance;
+		D3DXVECTOR2 relativeVelocity = spaceShip->velocity - OtherSpaceShip->velocity;
+		float velocityAlongNormal = D3DXVec2Dot(&relativeVelocity, &normal);
+		if (velocityAlongNormal > 0.0f) return;
+		float restitution = 1.0f;
+		float impulse = -(1.0f + restitution) * velocityAlongNormal;
+		impulse /= (1.0f / spaceShip->mass + 1.0f / OtherSpaceShip->mass);
+		D3DXVECTOR2 impulseVector = impulse * normal;
+		spaceShip->velocity += (impulseVector / spaceShip->mass);
+		OtherSpaceShip->velocity -= (impulseVector / OtherSpaceShip->mass);
 	}
 }
 
@@ -120,18 +131,18 @@ void collider::Circle(SpaceShip* spaceShip, Ball* ball)
 	D3DXVECTOR2 v1 = spaceShip->velocity;
 	D3DXVECTOR2 v2 = ball->velocity;
 	D3DXVECTOR2 distanceVector = spaceShip->position - ball->position;
-	if (spaceShip->spriteWidth / 2.1 + ball->spriteWidth / 2.1 > D3DXVec2Length(&distanceVector)) {
-		D3DXVec2Normalize(&distanceVector, &distanceVector); //normalize distance vector 
-		D3DXVECTOR2 v1n = distanceVector * D3DXVec2Dot(&v1, &distanceVector); //vector 1 . n * n; normal component before collision 
-		D3DXVECTOR2 v2n = distanceVector * D3DXVec2Dot(&v2, &distanceVector);
-		D3DXVECTOR2 v1t = v1 - v1n; // tangent component 
-		D3DXVECTOR2 v2t = v2 - v2n;
-		D3DXVECTOR2 newV1n = (((spaceShip->mass - ball->mass) * v1n) + (2 * ball->mass * v2n)) / (spaceShip->mass + ball->mass); //after collision change the normal; find the new normal with mass; refer wiki 
-		D3DXVECTOR2 newV2n = (((ball->mass - spaceShip->mass) * v2n) + (2 * spaceShip->mass * v1n)) / (spaceShip->mass + ball->mass);
-		D3DXVECTOR2 newV1 = newV1n + v1t;//form the new vactor 
-		D3DXVECTOR2 newV2 = newV2n + v2t;
-		spaceShip->velocity = (newV1);
-		ball->velocity = (newV2);
+	if (spaceShip->spriteWidth / 2 + ball->spriteWidth / 2 > D3DXVec2Length(&distanceVector)) {
+		float distance = D3DXVec2Length(&distanceVector);
+		D3DXVECTOR2 normal = distanceVector / distance;
+		D3DXVECTOR2 relativeVelocity = spaceShip->velocity - ball->velocity;
+		float velocityAlongNormal = D3DXVec2Dot(&relativeVelocity, &normal);
+		if (velocityAlongNormal > 0.0f) return;
+		float restitution = 1.0f;
+		float impulse = -(1.0f + restitution) * velocityAlongNormal;
+		impulse /= (1.0f / spaceShip->mass + 1.0f / ball->mass);
+		D3DXVECTOR2 impulseVector = impulse * normal;
+		spaceShip->velocity -= (impulseVector / spaceShip->mass);
+		ball->velocity += -(impulseVector / ball->mass);
 	}
 }
 

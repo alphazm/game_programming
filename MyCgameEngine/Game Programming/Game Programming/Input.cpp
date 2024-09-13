@@ -165,7 +165,7 @@ bool Input::wKey()
 
 bool Input::aKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_A))
 		return true;
 	else
 		return false;
@@ -173,7 +173,7 @@ bool Input::aKey()
 
 bool Input::sKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_S))
 		return true;
 	else
 		return false;
@@ -181,7 +181,7 @@ bool Input::sKey()
 
 bool Input::dKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_D))
 		return true;
 	else
 		return false;
@@ -189,7 +189,7 @@ bool Input::dKey()
 
 bool Input::upKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_UP))
 		return true;
 	else
 		return false;
@@ -197,7 +197,7 @@ bool Input::upKey()
 
 bool Input::leftKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_LEFT))
 		return true;
 	else
 		return false;
@@ -205,7 +205,7 @@ bool Input::leftKey()
 
 bool Input::downKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_DOWN))
 		return true;
 	else
 		return false;
@@ -213,7 +213,7 @@ bool Input::downKey()
 
 bool Input::RightKey()
 {
-	if (KeyboardKeyHold(DIK_W))
+	if (KeyboardKeyHold(DIK_RIGHT))
 		return true;
 	else
 		return false;
