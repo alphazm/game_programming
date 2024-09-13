@@ -9,6 +9,14 @@ void AudioManager::initialize()
 void AudioManager::playSound()
 {
 	result = system->playSound(sound1, 0, false, &channel);
+	channel->setVolume(1.0f);
+	
+}
+
+void AudioManager::playSound3()
+{
+	result = system->playSound(sound3, 0, false, &channel);
+	channel->setVolume(1.0f);
 }
 
 void AudioManager::playSoundTrack()
@@ -24,8 +32,11 @@ void AudioManager::loadSounds()
 	result = system->createSound("assets/gunshot",FMOD_DEFAULT,0,&sound1);
 	result = sound1->setMode(FMOD_LOOP_OFF);
 
-	result = system->createStream("", FMOD_DEFAULT, 0, &sound2);
+	result = system->createStream("assets/bgm.wav", FMOD_DEFAULT, 0, &sound2);
 	result = sound2->setMode(FMOD_LOOP_OFF);
+
+	result = system->createStream("assets/click.wav", FMOD_DEFAULT, 0, &sound3);
+	result = sound3->setMode(FMOD_LOOP_OFF);
 }
 
 void AudioManager::updateSound()

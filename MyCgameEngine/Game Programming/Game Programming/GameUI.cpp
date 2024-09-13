@@ -3,14 +3,18 @@
 
 GameUI::GameUI(IDirect3DDevice9* device) : d3dDevice(device), currentState(UIState::MAIN_MENU) {
     mainMenu = new MainMenu(device);
+    myAudioManager = new AudioManager(); 
 }
 
 GameUI::~GameUI() {
     delete mainMenu;
+    delete myAudioManager;
 }
 
 void GameUI::Initialize() {
     mainMenu->Initialize();
+    myAudioManager->initialize(); 
+    myAudioManager->loadSounds();
 }
 
 void GameUI::Update(const BYTE* diKeys) {
@@ -18,7 +22,9 @@ void GameUI::Update(const BYTE* diKeys) {
     case UIState::MAIN_MENU:
         mainMenu->Update(diKeys);
         if (diKeys[DIK_RETURN] & 0x80) {
+            myAudioManager->playSound3();
             int selectedIndex = mainMenu->GetSelectedIndex();
+            
             if (selectedIndex == 0) {
                 SetState(UIState::IN_GAME);
             }

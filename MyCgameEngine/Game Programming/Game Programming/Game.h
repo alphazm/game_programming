@@ -7,6 +7,7 @@
 #include "Sprite.h"
 #include "FrameTimer.h"
 #include <vector>
+#include "AudioManager.h"
 class Game
 {
 public:
@@ -21,5 +22,8 @@ private:
 	GameUI* pGameUI;
 	std::vector<Sprite*> gameObjects;
 	FrameTimer* pFrameTimer;
+	AudioManager* sounds;
+	AudioManager* myAudioManager = new AudioManager();
+
 };
 
