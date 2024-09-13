@@ -76,18 +76,23 @@ void collider::inside(Ball* ball, RECT* field)
 	ball->velocity=velocity;
 }
 
-void collider::inGoal(Ball* ball, Goal* goal, RECT* field, bool* left, bool* right)
+bool collider::leftGoal(Ball* ball, RECT* goal, RECT* field)
 {
 	// Check left goal area
-	if (ball->position.x < field->left && ball->position.y >((field->bottom-field->top) - (goal->GetRect()->bottom - goal->GetRect()->top)) / 2 &&
-		ball->position.y < ((field->bottom - field->top) + (goal->GetRect()->bottom - goal->GetRect()->top)) / 2) {
-		*left = true;
+	if (ball->position.x < field->left && ball->position.y >((field->bottom - field->top) - (goal->bottom - goal->top)) / 2 &&
+		ball->position.y < ((field->bottom - field->top) + (goal->bottom - goal->top)) / 2) {
+		return true;
 	}
+	return false;
+}
+bool collider::rightGoal(Ball* ball, RECT* goal, RECT* field)
+{
 	// Check right goal area
-	if (ball->position.x > field->right && ball->position.y > ((field->bottom - field->top) - (goal->GetRect()->bottom - goal->GetRect()->top)) / 2 &&
-		ball->position.y < ((field->bottom - field->top) + (goal->GetRect()->bottom - goal->GetRect()->top)) / 2) {
-		*right = true;
+	if (ball->position.x > field->right && ball->position.y > ((field->bottom - field->top) - (goal->bottom - goal->top)) / 2 &&
+		ball->position.y < ((field->bottom - field->top) + (goal->bottom - goal->top)) / 2) {
+		return true;
 	}
+	return false;
 }
 
 void collider::Circle(SpaceShip* spaceShip, SpaceShip* OtherSpaceShip)

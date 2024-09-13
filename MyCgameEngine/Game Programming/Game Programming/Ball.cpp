@@ -16,17 +16,18 @@ Ball::~Ball()
 	timer = NULL;
 }
 
-void Ball::Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 startingPosition, int objectNumber)
+
+void Ball::Initialize(LPDIRECT3DDEVICE9 device, LPD3DXSPRITE sprite, D3DXVECTOR2 startingPosition, int objectNumber)
 {
-	D3DXCreateSprite(device, &sprite);
-	D3DXCreateTextureFromFile(device, "assets/spaceShip.png", &texture);
+	this->sprite = sprite;
+	D3DXCreateTextureFromFile(device,"assets/ball.png", &texture);
 	timer = new FrameTimer;
 	timer->Init(30);
 	textureHeight = 64;
 	textureWidth = 64;
 	textureCol = 2;
 	textureRow = 2;
-	maxFrame = 4;
+	maxFrame = 1;
 	spriteCurrentFrame = 0;
 	divisor = 4;
 	spriteWidth = textureWidth / textureCol;
@@ -73,15 +74,20 @@ void Ball::SetTransformation()
 
 void Ball::Draw()
 {
-	sprite->Begin(D3DXSPRITE_ALPHABLEND);
+	//sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	SetTransformation();
 	sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	sprite->End();
+	//sprite->End();
 }
 
 void Ball::changeDirection()
 {
 	rotation = atan2(velocity.x,velocity.y);
+}
+
+void Ball::setFriction(float value)
+{
+	this->friction = value;
 }
 
 

@@ -4,8 +4,8 @@ Goal::Goal()
 {
     rect.top = 10;
     rect.bottom = 10;
-    rect.right = 80;
-    rect.left = 80;
+    rect.right = 180;
+    rect.left = 180;
 }
 
 RECT* Goal::GetRect()

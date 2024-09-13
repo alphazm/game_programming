@@ -14,6 +14,7 @@ StateManager* StateManager::getInstance()
 void StateManager::init()
 {
 	Field1* field1 = new Field1();
+	field1->init();
 	scene.push_back(field1);
 	currentState = scene[0];
 	pTimer = new FrameTimer;
