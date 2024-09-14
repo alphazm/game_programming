@@ -101,7 +101,7 @@ void Field1::update()
 		player2->velocity += player2->acceleration;
 		player2->velocity *= player2->friction;
 		player2->position += player2->velocity;
-		ball->velocity *= ball->friction;
+		
 		ball->position += ball->velocity;
 		player1->Update();
 		player2->Update();
