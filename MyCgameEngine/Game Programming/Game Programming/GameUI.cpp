@@ -63,7 +63,8 @@ void GameUI::Render() {
         mainMenu->Render();
         break;
     case UIState::GAME_SETTINGS:
-        setting->Render(); 
+        mainMenu->Render(); //render main menu for background
+        setting->Render();  // render setting pop out
         break;
     }
 }
