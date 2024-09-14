@@ -21,6 +21,8 @@ private:
     bool soundVolumeChanged = false;
     float scaleX = 0.5f;
     float scaleY = 0.5f;
+    D3DXMATRIX scaleMatrix;
+    D3DXMATRIX identityMatrix;
 public:
     Setting(IDirect3DDevice9* device);
     ~Setting();

@@ -1,10 +1,17 @@
-﻿  Setting.cpp
+﻿  Game.cpp
   C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(92,61): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(103,67): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(109,81): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(114,88): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(119,81): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(124,89): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
-C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(128,75): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+  GameUI.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Setting.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(91,61): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(102,67): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(108,81): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(113,88): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(118,81): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(123,89): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Game Programming\Setting.cpp(127,75): warning C4002: too many arguments for function-like macro invocation 'D3DCOLOR_XRGB'
+  mainWindow.cpp
+  C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Generating Code...
   Game Programming.vcxproj -> C:\Users\User\source\repos\game_programming2\MyCgameEngine\Game Programming\Debug\Game Programming.exe

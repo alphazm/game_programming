@@ -79,19 +79,15 @@ void Setting::Render() {
     d3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);*/
 
     if (popupTexture) {
-        float scaleX = 0.5f;
-        float scaleY = 0.5f;
-
         D3DXVECTOR3 pos(400, 200, 0);
         RECT windowRect = { 0, 0, 940, 800 };
 
-        D3DXMATRIX scaleMatrix;
+        
         D3DXMatrixScaling(&scaleMatrix, scaleX, scaleY, 1.0f);
         sprite->SetTransform(&scaleMatrix);
 
         sprite->Draw(popupTexture, &windowRect, NULL, &pos, D3DCOLOR_XRGB(255, 255, 255, 255));
 
-        D3DXMATRIX identityMatrix;
         D3DXMatrixIdentity(&identityMatrix);
         sprite->SetTransform(&identityMatrix);
     }
