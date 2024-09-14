@@ -1,25 +1,30 @@
 #pragma once
-#include"SpriteRender.h"
+#include <d3dx9.h>
+#include"FrameTimer.h"
+#include"GameObject.h"
 
-class Ball:public SpriteRender
+class Ball :public GameObject
 {
 public:
+	Ball();
 	~Ball();
-	void setMass(float mass);
+	void Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 objectPosition, int objectNumber);
+	void Update();
+	void SetTransformation();
+	void Draw();
 	void changeDirection();
-	void setFiction(float friction);
-	void updatePosition();
-	void setPosition(D3DXVECTOR2 position);
-	void setVector(D3DXVECTOR2 vector);
-	D3DXVECTOR2 getPosition();
-	D3DXVECTOR2 getVector();
-	float getMass();
-	
-private:
-	float mass;
+	void setFriction(float value);
+	LPDIRECT3DTEXTURE9 texture;
+	LPD3DXSPRITE sprite;
+	FrameTimer* timer;
 	D3DXVECTOR2 velocity;
+	D3DXVECTOR2 acceleration;
 	D3DXVECTOR2 position;
-	float angle;
+	float mass;
 	float friction;
+	int frameCounter;
+	int maxFrame;
+	int divisor;
+
 };
 

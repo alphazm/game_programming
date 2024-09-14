@@ -3,7 +3,7 @@
 class Goal
 {
 public:
-	Goal(int top, int bottom, int left, int right);
+	Goal();
 	RECT* GetRect();
 private :
 	RECT rect;
