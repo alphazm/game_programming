@@ -22,9 +22,7 @@ void GameUI::Initialize() {
     myAudioManager->playSoundTrack();
     mainMenu->Initialize();
     setting->Initialize();
-    pauseMenu->Initialize();
-    //need to move this
-    
+    pauseMenu->Initialize();    
 }
 
 void GameUI::Update(const BYTE* diKeys) {
@@ -44,8 +42,8 @@ void GameUI::Update(const BYTE* diKeys) {
                     myAudioManager->stopMusic();
                     level = new Lvl(d3dDevice, myAudioManager);
                     level->Initialize();
-                    /*myAudioManager->setMusicVolume(setting->GetMusicVolume()); 
-                    myAudioManager->setSoundEffectsVolume(setting->GetSoundVolume());*/
+                    myAudioManager->setMusicVolume(setting->GetMusicVolume()); 
+                    myAudioManager->setSoundEffectsVolume(setting->GetSoundVolume());
                     SetState(UIState::IN_GAME);
                 }
                 else if (selectedIndex == 1) {
@@ -123,6 +121,8 @@ void GameUI::Update(const BYTE* diKeys) {
 
     case UIState::GAME_SETTINGS:
         setting->Update(diKeys);
+        myAudioManager->setMusicVolume(setting->GetMusicVolume());
+        myAudioManager->setSoundEffectsVolume(setting->GetSoundVolume());
         if (diKeys[DIK_ESCAPE] & 0x80) {
             if (previousState == UIState::PAUSE_MENU) {
                 SetState(UIState::PAUSE_MENU);
@@ -168,10 +168,10 @@ void GameUI::SetState(UIState newState) {
     previousState = currentState;
     currentState = newState;
 
-    /*if (currentState == UIState::GAME_SETTINGS) {
-        setting->SetMusicVolume(myAudioManager->getMusicVolume());
-        setting->SetSoundVolume(myAudioManager->getSoundEffectsVolume());
-    }*/
+    if (currentState == UIState::IN_GAME) {
+        myAudioManager->setMusicVolume(setting->GetMusicVolume());
+        myAudioManager->setSoundEffectsVolume(setting->GetSoundVolume());
+    }
     char debugMsg[100];
     sprintf_s(debugMsg, "UI State changed from %d to %d\n", static_cast<int>(previousState), static_cast<int>(currentState));
     OutputDebugStringA(debugMsg);

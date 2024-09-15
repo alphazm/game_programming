@@ -14,9 +14,6 @@ MainMenu::MainMenu(IDirect3DDevice9* device) : d3dDevice(device), selectedItemIn
     if (FAILED(hr)) {
         OutputDebugStringA("Failed to create font\n");
     }
-    else {
-        OutputDebugStringA("Font created successfully\n");
-    }
 
     newWidth = static_cast<int>(originalWidth * scaleX);
     newHeight = static_cast<int>(originalHeight * scaleY);

@@ -9,7 +9,7 @@ private:
     AudioManager* myAudioManager;
     LPDIRECT3DTEXTURE9 backgroundTexture;
     LPD3DXSPRITE sprite;
-
+    LPD3DXFONT font;
 public:
     Lvl(IDirect3DDevice9* device, AudioManager* audioManager);
     ~Lvl();
