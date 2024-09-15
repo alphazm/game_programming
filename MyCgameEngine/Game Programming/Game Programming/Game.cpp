@@ -38,6 +38,7 @@ void Game::update()
 
 		if (pGameUI->GetState() == UIState::IN_GAME) {
 			for (auto obj : gameObjects) {
+				//obj->update();
 				obj->render(pGraphics->d3dDevice);
 			}
 		}

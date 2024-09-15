@@ -24,8 +24,8 @@ Setting::Setting(IDirect3DDevice9* device, AudioManager* audio) : d3dDevice(devi
 
 Setting::~Setting() {
     if (sprite) sprite->Release();
-    if (popupTexture) popupTexture->Release();
     if (font) font->Release();
+    if (popupTexture) popupTexture->Release();
 }
 
 void Setting::Initialize() {
@@ -72,7 +72,7 @@ void Setting::Update(const BYTE* diKeys) {
 
 void Setting::Render() {
     //d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
-    d3dDevice->BeginScene();
+    //d3dDevice->BeginScene();
     sprite->Begin(D3DXSPRITE_ALPHABLEND);
     /*d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
     d3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
@@ -91,9 +91,9 @@ void Setting::Render() {
         D3DXMatrixIdentity(&identityMatrix);
         sprite->SetTransform(&identityMatrix);
     }
-    d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    /*d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
     d3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-    d3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    d3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);*/
 
     RECT titleRect = { 220, 110, 0, 0 };
     font->DrawText(sprite, "Settings", -1, &titleRect, DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255, 255));
@@ -124,5 +124,5 @@ void Setting::Render() {
     font->DrawText(sprite, "Press ESC to exit", -1, &textRect, DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255, 255));
 
     sprite->End();
-    d3dDevice->EndScene();
+    //d3dDevice->EndScene();
 }

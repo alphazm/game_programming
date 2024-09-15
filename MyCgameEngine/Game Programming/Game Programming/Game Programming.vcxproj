@@ -154,6 +154,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="Setting.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="State.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameUI.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />
