@@ -48,6 +48,9 @@ void PauseMenu::Update(const BYTE* diKeys) {
     else {
         downPressed = false;
     }
+    char debugMsg[100];
+    sprintf_s(debugMsg, "Pause Menu Selected Index: %d\n", selectedItemIndex);
+    OutputDebugStringA(debugMsg);
 }
 
 void PauseMenu::Render() {

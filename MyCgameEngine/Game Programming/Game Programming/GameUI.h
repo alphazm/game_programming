@@ -5,8 +5,12 @@
 #include "Setting.h"
 #include "PauseMenu.h"
 
-enum class UIState { MAIN_MENU, GAME_SETTINGS, IN_GAME, PAUSE_MENU };
-
+enum class UIState {
+    MAIN_MENU = 0,
+    IN_GAME = 1,
+    GAME_SETTINGS = 2,
+    PAUSE_MENU = 3
+};
 class GameUI {
 private:
     IDirect3DDevice9* d3dDevice;
