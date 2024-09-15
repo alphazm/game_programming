@@ -37,7 +37,6 @@ void Ball::Initialize(LPDIRECT3DDEVICE9 device, D3DXVECTOR2 startingPosition, in
 	scalingRotation = 0.0f;
 	rotation = 0.0;
 	object = objectNumber;
-	acceleration = { 0,0 };
 	velocity = { 0,0 };
 	mass = 20;
 	friction = 0.0f;
@@ -78,7 +77,7 @@ void Ball::Draw()
 
 void Ball::changeDirection()
 {
-	rotation = -atan2(velocity.x,velocity.y);
+	rotation = atan2(velocity.x,-velocity.y);
 }
 
 void Ball::setFriction(float value)

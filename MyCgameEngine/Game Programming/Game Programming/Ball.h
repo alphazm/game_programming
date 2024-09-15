@@ -18,7 +18,6 @@ public:
 	LPD3DXSPRITE sprite;
 	FrameTimer* timer;
 	D3DXVECTOR2 velocity;
-	D3DXVECTOR2 acceleration;
 	D3DXVECTOR2 position;
 	float mass;
 	float friction;

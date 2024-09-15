@@ -46,19 +46,19 @@ void collider::inside(SpaceShip* spaceShip, RECT* field, D3DXVECTOR3* Fposition)
 	D3DXVECTOR2 position = spaceShip->position;
 	D3DXVECTOR2 velocity = spaceShip->velocity;
 	if (position.x < field->left + Fposition->x) {
-
+		spaceShip->position = { Fposition->x + (float)0.05 ,position.y};
 		velocity.x *= -1;
 	}
 	if (position.x > field->right + Fposition->x - spaceShip->spriteWidth) {
-
+		spaceShip->position = { Fposition->x - spaceShip->spriteWidth + field->right - (float)0.05 ,position.y };
 		velocity.x *= -1;
 	}
 	if (position.y < field->top + Fposition->y) {
-
+		spaceShip->position = { position.x, Fposition->y + (float)0.05};
 		velocity.y *= -1;
 	}
 	if (position.y > field->bottom + Fposition->y - spaceShip->spriteHeight) {
-
+		spaceShip->position = { position.x,Fposition->y - spaceShip->spriteHeight +field->bottom - (float)0.05 };
 		velocity.y *= -1;
 	}
 	spaceShip->velocity = velocity;
@@ -87,20 +87,20 @@ void collider::inside(Ball* ball, RECT* field, D3DXVECTOR3* Fposition)
 	ball->velocity=velocity;
 }
 
-bool collider::leftGoal(Ball* ball, RECT* goal, RECT* field, D3DXVECTOR3* position)
+bool collider::leftGoal(Ball* ball, RECT* goal, D3DXVECTOR3* position)
 {
 	// Check left goal area
-	if (ball->position.x < field->left && ball->position.y >((field->bottom - field->top) - (goal->bottom - goal->top)) / 2 &&
-		ball->position.y < ((field->bottom - field->top) + (goal->bottom - goal->top)) / 2) {
+	if (ball->position.x < goal->right + position->x && ball->position.y > goal->top + position->y
+		&& ball->position.y < goal->bottom + position->y) {
 		return true;
 	}
 	return false;
 }
-bool collider::rightGoal(Ball* ball, RECT* goal, RECT* field, D3DXVECTOR3* position)
+bool collider::rightGoal(Ball* ball, RECT* goal, D3DXVECTOR3* position)
 {
 	// Check right goal area
-	if (ball->position.x > field->right && ball->position.y > ((field->bottom - field->top) - (goal->bottom - goal->top)) / 2 &&
-		ball->position.y < ((field->bottom - field->top) + (goal->bottom - goal->top)) / 2) {
+	if (ball->position.x > goal->left + position->x -ball->spriteWidth && ball->position.y > goal->top + position->y
+		&& ball->position.y < goal->bottom + position->y) {
 		return true;
 	}
 	return false;
