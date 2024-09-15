@@ -36,6 +36,9 @@ void Setting::Initialize() {
 }
 
 void Setting::Update(const BYTE* diKeys) {
+    musicVolume = audioManager->getMusicVolume();
+    soundVolume = audioManager->getSoundEffectsVolume();
+
     bool volumeChanged = false;
     bool musicVolumeChanged = false;
     bool soundVolumeChanged = false;

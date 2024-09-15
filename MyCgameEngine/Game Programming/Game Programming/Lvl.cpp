@@ -22,6 +22,8 @@ void Lvl::Initialize() {
     myAudioManager->initialize();
     myAudioManager->loadSounds();
     myAudioManager->playSoundTrack2();
+    myAudioManager->setMusicVolume(myAudioManager->getMusicVolume());
+    myAudioManager->setSoundEffectsVolume(myAudioManager->getSoundEffectsVolume());
     HRESULT hr = D3DXCreateTextureFromFile(d3dDevice, "assets/bg3.jpg", &backgroundTexture);
     if (FAILED(hr)) {
         OutputDebugStringA("Failed to load in-game background texture\n");

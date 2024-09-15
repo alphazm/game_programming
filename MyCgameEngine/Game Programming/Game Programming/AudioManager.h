@@ -29,10 +29,10 @@ public:
 	void updateSound();
 	void setMusicVolume(float volume);
 	void setSoundEffectsVolume(float volume);
-	void stopMusic();
-	void stopSoundEffects();
 	float getMusicVolume() const { return musicVolume; }
 	float getSoundEffectsVolume() const { return soundEffectsVolume; }
+	void stopMusic();
+	void stopSoundEffects();
 	void toggleMusicPause();
 	AudioManager();
 	~AudioManager();

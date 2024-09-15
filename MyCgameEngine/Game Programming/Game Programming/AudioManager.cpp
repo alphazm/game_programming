@@ -68,11 +68,11 @@ void AudioManager::playSoundTrack() {
 			isMusicPlaying = true;
 		}
 	}
-	else {
+	/*else {
 		if (musicChannel) {
 			musicChannel->setVolume(musicVolume);
 		}
-	}
+	}*/
 }
 
 void AudioManager::playSoundTrack2() {
@@ -85,11 +85,11 @@ void AudioManager::playSoundTrack2() {
 			isMusicPlaying = true;
 		}
 	}
-	else {
+	/*else {
 		if (musicChannel) {
 			musicChannel->setVolume(musicVolume);
 		}
-	}
+	}*/
 }
 
 void AudioManager::loadSounds()

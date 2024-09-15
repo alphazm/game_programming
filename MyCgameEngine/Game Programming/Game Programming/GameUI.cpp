@@ -42,16 +42,18 @@ void GameUI::Update(const BYTE* diKeys) {
 
                 if (selectedIndex == 0) {
                     myAudioManager->stopMusic();
-                    level = new Lvl(d3dDevice, myAudioManager); 
-                    level->Initialize(); 
+                    level = new Lvl(d3dDevice, myAudioManager);
+                    level->Initialize();
+                    /*myAudioManager->setMusicVolume(setting->GetMusicVolume()); 
+                    myAudioManager->setSoundEffectsVolume(setting->GetSoundVolume());*/
                     SetState(UIState::IN_GAME);
                 }
                 else if (selectedIndex == 1) {
                     SetState(UIState::GAME_SETTINGS);
-                    setting->SetMusicVolume(1.0f);
+                    /*setting->SetMusicVolume(1.0f);
                     setting->SetSoundVolume(1.0f);
                     myAudioManager->setMusicVolume(1.0f);
-                    myAudioManager->setSoundEffectsVolume(1.0f);
+                    myAudioManager->setSoundEffectsVolume(1.0f);*/
                 }
                 else if (selectedIndex == 2) {
                     PostQuitMessage(0);
@@ -165,6 +167,11 @@ void GameUI::Render() {
 void GameUI::SetState(UIState newState) {
     previousState = currentState;
     currentState = newState;
+
+    /*if (currentState == UIState::GAME_SETTINGS) {
+        setting->SetMusicVolume(myAudioManager->getMusicVolume());
+        setting->SetSoundVolume(myAudioManager->getSoundEffectsVolume());
+    }*/
     char debugMsg[100];
     sprintf_s(debugMsg, "UI State changed from %d to %d\n", static_cast<int>(previousState), static_cast<int>(currentState));
     OutputDebugStringA(debugMsg);
