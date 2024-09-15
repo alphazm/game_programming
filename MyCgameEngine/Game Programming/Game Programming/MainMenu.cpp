@@ -42,11 +42,27 @@ void MainMenu::Initialize() {
 }
 
 void MainMenu::Update(const BYTE* diKeys) {
+    static bool upPressed = false;
+    static bool downPressed = false;
+
     if (diKeys[DIK_UP] & 0x80) {
-        selectedItemIndex = (selectedItemIndex - 1 + menuItems.size()) % menuItems.size();
+        if (!upPressed) { 
+            selectedItemIndex = (selectedItemIndex - 1 + menuItems.size()) % menuItems.size();
+            upPressed = true;
+        }
     }
-    else if (diKeys[DIK_DOWN] & 0x80) {
-        selectedItemIndex = (selectedItemIndex + 1) % menuItems.size();
+    else {
+        upPressed = false; 
+    }
+
+    if (diKeys[DIK_DOWN] & 0x80) {
+        if (!downPressed) { 
+            selectedItemIndex = (selectedItemIndex + 1) % menuItems.size();
+            downPressed = true; 
+        }
+    }
+    else {
+        downPressed = false; 
     }
 }
 

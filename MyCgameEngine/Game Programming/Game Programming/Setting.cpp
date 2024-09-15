@@ -74,7 +74,7 @@ void Setting::Render() {
     //d3dDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
     //d3dDevice->BeginScene();
     sprite->Begin(D3DXSPRITE_ALPHABLEND);
-    /*d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+    /*d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
     d3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
     d3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);*/
 
@@ -86,13 +86,13 @@ void Setting::Render() {
         D3DXMatrixScaling(&scaleMatrix, scaleX, scaleY, 1.0f);
         sprite->SetTransform(&scaleMatrix);
 
-        sprite->Draw(popupTexture, &windowRect, NULL, &pos, D3DCOLOR_XRGB(255, 255, 255, 255));
+        sprite->Draw(popupTexture, &windowRect, NULL, &pos, D3DCOLOR_ARGB(255, 255, 255, 255));  // Fully opaque
 
         D3DXMatrixIdentity(&identityMatrix);
         sprite->SetTransform(&identityMatrix);
     }
-    /*d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-    d3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    //d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    /*d3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
     d3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);*/
 
     RECT titleRect = { 220, 110, 0, 0 };
@@ -103,10 +103,10 @@ void Setting::Render() {
     std::ostringstream musicStream;
     musicStream << "Music Volume: " << static_cast<int>(musicVolume * 100) << "%";
     font->DrawText(sprite, musicStream.str().c_str(), -1, &textRect, DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255, 255));
-
+    
     RECT reminderRect = { 220, 220, 0, 0 };
     std::ostringstream reminder1;
-    reminder1 << "note: Use left/right arrow to control";
+    reminder1 << "note: Use up/down arrow to control";
     smallFont->DrawText(sprite, reminder1.str().c_str(), -1, &reminderRect, DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255, 255));
 
     textRect.top += 100;
@@ -116,7 +116,7 @@ void Setting::Render() {
 
     RECT reminderRect2 = { 220, 320, 0, 0 };
     std::ostringstream reminder2;
-    reminder2 << "note: Use up/down arrow to control";
+    reminder2 << "note: Use left / right arrow to control";
     smallFont->DrawText(sprite, reminder2.str().c_str(), -1, &reminderRect2, DT_NOCLIP, D3DCOLOR_XRGB(255, 255, 255, 255));
 
 
@@ -125,4 +125,6 @@ void Setting::Render() {
 
     sprite->End();
     //d3dDevice->EndScene();
+    //d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+
 }

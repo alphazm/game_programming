@@ -23,6 +23,9 @@ private:
     float scaleY = 0.5f;
     D3DXMATRIX scaleMatrix;
     D3DXMATRIX identityMatrix;
+
+    LPDIRECT3DTEXTURE9 renderTargetTexture;
+    LPDIRECT3DSURFACE9 renderTargetSurface;
 public:
     Setting(IDirect3DDevice9* device);
     ~Setting();

@@ -80,6 +80,7 @@ void GameUI::Update(const BYTE* diKeys) {
             }
         }
         if (diKeys[DIK_ESCAPE] & 0x80) {
+            myAudioManager->playSound4();
             SetState(UIState::IN_GAME);
         }
         break;
@@ -120,6 +121,9 @@ void GameUI::Render() {
         else {
             mainMenu->Render(); // render main menu for background
         }
+        /*d3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+        d3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+        d3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);*/
         setting->Render();  // render setting pop out
         break;
     }
