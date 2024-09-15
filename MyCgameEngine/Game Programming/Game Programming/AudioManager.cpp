@@ -36,6 +36,13 @@ void AudioManager::playSound3() {
 	}
 }
 
+void AudioManager::playSound4() {
+	result = system->playSound(sound4, sfxChannelGroup, false, &sfxChannel);
+	if (sfxChannel) {
+		sfxChannel->setVolume(soundEffectsVolume);
+	}
+}
+
 void AudioManager::stopMusic() {
 	if (musicChannel) {
 		musicChannel->stop();
@@ -78,6 +85,9 @@ void AudioManager::loadSounds()
 
 	result = system->createStream("assets/click.wav", FMOD_DEFAULT, 0, &sound3);
 	result = sound3->setMode(FMOD_LOOP_OFF);
+
+	result = system->createStream("assets/pause.wav", FMOD_DEFAULT, 0, &sound4);
+	result = sound4->setMode(FMOD_LOOP_OFF);
 }
 void AudioManager::toggleMusicPause() {
 	if (musicChannel) {

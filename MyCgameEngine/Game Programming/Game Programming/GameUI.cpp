@@ -50,6 +50,7 @@ void GameUI::Update(const BYTE* diKeys) {
         break;
     case UIState::IN_GAME:
         if (diKeys[DIK_P] & 0x80 && !pKeyPressed) {
+            myAudioManager->playSound4();
             SetState(UIState::PAUSE_MENU);
             pKeyPressed = true;
         }
@@ -61,6 +62,7 @@ void GameUI::Update(const BYTE* diKeys) {
     case UIState::PAUSE_MENU:
         pauseMenu->Update(diKeys);
         if (diKeys[DIK_RETURN] & 0x80) {
+            myAudioManager->playSound3(); 
             int selectedIndex = pauseMenu->GetSelectedIndex();
             switch (selectedIndex) {
             case 0:

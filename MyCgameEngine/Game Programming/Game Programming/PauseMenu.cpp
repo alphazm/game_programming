@@ -10,11 +10,19 @@ PauseMenu::~PauseMenu() {
     if (sprite) sprite->Release();
     if (font) font->Release();
     if (backgroundTexture) backgroundTexture->Release();
+    if (pauseTexture) pauseTexture->Release();
 }
 
 void PauseMenu::Initialize() {
+    /*myAudioManager->initialize();
+    myAudioManager->loadSounds();*/
     menuItems = { "Resume", "Restart", "Settings", "Main Menu" };
     D3DXCreateTextureFromFile(d3dDevice, "assets/Window.png", &backgroundTexture);
+    D3DXCreateTextureFromFile(d3dDevice, "assets/Header.png", &pauseTexture);
+    HRESULT hr = D3DXCreateTextureFromFile(d3dDevice, "assets/Header.png", &pauseTexture);
+    if (FAILED(hr)) {
+        OutputDebugStringA("Failed to load pause texture\n");
+    }
 }
 
 void PauseMenu::Update(const BYTE* diKeys) {
@@ -30,9 +38,29 @@ void PauseMenu::Render() {
     sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
     if (backgroundTexture) {
-        D3DXVECTOR3 center(0, 0, 0);
-        RECT destRect = { 0, 0, 900, 600 };
+        D3DXVECTOR3 center(1000, 200, 0);
+        RECT destRect = { 0, 0, 940, 800 };
+        D3DXMatrixScaling(&scaleMatrix, scaleX, scaleY, 1.0f);
+        sprite->SetTransform(&scaleMatrix);
+
         sprite->Draw(backgroundTexture, &destRect, NULL, &center, D3DCOLOR_XRGB(255, 255, 255)); 
+        D3DXMatrixIdentity(&identityMatrix);
+        sprite->SetTransform(&identityMatrix);
+    
+    }
+
+    if (pauseTexture) {
+        D3DXVECTOR3 pausePos(800, 300, 0);
+        RECT pauseRect = { 0, 0, 300, 59 };
+
+
+        D3DXMatrixScaling(&scaleMatrix, textScaleX, textScaleY, 1.0f);
+        sprite->SetTransform(&scaleMatrix);
+
+        sprite->Draw(pauseTexture, &pauseRect, NULL, &pausePos, D3DCOLOR_XRGB(255, 255, 255));
+
+        D3DXMatrixIdentity(&identityMatrix);
+        sprite->SetTransform(&identityMatrix);
     }
  
     for (size_t i = 0; i < menuItems.size(); ++i) {

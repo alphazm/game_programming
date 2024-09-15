@@ -4,7 +4,7 @@ class AudioManager
 {
 private:
 	FMOD::System *system;
-	FMOD::Sound* sound1, * sound2, * sound3;
+	FMOD::Sound* sound1, * sound2, * sound3, * sound4;
 	FMOD::Channel* channel = 0;
 	FMOD_RESULT result;
 	void* extradriverdata = 0;
@@ -22,6 +22,7 @@ public:
 	void initialize();
 	void playSound();
 	void playSound3();
+	void playSound4();
 	void playSoundTrack();
 	void loadSounds();
 	void updateSound();
