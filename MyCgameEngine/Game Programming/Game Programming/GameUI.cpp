@@ -13,6 +13,7 @@ GameUI::~GameUI() {
     delete setting;
     delete myAudioManager;
     delete pauseMenu;
+    delete level;
 }
 
 void GameUI::Initialize() {
@@ -22,6 +23,8 @@ void GameUI::Initialize() {
     mainMenu->Initialize();
     setting->Initialize();
     pauseMenu->Initialize();
+    //need to move this
+    
 }
 
 void GameUI::Update(const BYTE* diKeys) {
@@ -38,6 +41,9 @@ void GameUI::Update(const BYTE* diKeys) {
                 int selectedIndex = mainMenu->GetSelectedIndex();
 
                 if (selectedIndex == 0) {
+                    myAudioManager->stopMusic();
+                    level = new Lvl(d3dDevice, myAudioManager); 
+                    level->Initialize(); 
                     SetState(UIState::IN_GAME);
                 }
                 else if (selectedIndex == 1) {
@@ -58,6 +64,9 @@ void GameUI::Update(const BYTE* diKeys) {
         break;
 
     case UIState::IN_GAME:
+        if (level) {
+            level->Update(diKeys);
+        }
         if (diKeys[DIK_P] & 0x80 && !pKeyPressed) {
             myAudioManager->playSound4();
             SetState(UIState::PAUSE_MENU);
@@ -67,6 +76,7 @@ void GameUI::Update(const BYTE* diKeys) {
             pKeyPressed = false;
         }
         break;
+
 
     case UIState::PAUSE_MENU:
         pauseMenu->Update(diKeys);
@@ -86,6 +96,10 @@ void GameUI::Update(const BYTE* diKeys) {
                     SetState(UIState::GAME_SETTINGS);
                     break;
                 case 3: // Main Menu
+                    myAudioManager->stopMusic();
+                    delete level;
+                    level = nullptr;
+                    myAudioManager->playSoundTrack();
                     SetState(UIState::MAIN_MENU);
                     break;
                 default:
@@ -127,7 +141,9 @@ void GameUI::Render() {
         mainMenu->Render();
         break;
     case UIState::IN_GAME:
-
+        if (level) {
+            level->Render(); 
+        }
         break;
     case UIState::PAUSE_MENU:
         pauseMenu->Render();

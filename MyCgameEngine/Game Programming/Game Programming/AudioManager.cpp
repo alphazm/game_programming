@@ -75,6 +75,23 @@ void AudioManager::playSoundTrack() {
 	}
 }
 
+void AudioManager::playSoundTrack2() {
+	if (!isMusicPlaying) {
+		stopMusic();
+		result = system->playSound(sound5, musicChannelGroup, false, &musicChannel);
+		if (musicChannel) {
+			musicChannel->setVolume(musicVolume);
+			musicChannel->setMode(FMOD_LOOP_NORMAL);
+			isMusicPlaying = true;
+		}
+	}
+	else {
+		if (musicChannel) {
+			musicChannel->setVolume(musicVolume);
+		}
+	}
+}
+
 void AudioManager::loadSounds()
 {
 	result = system->createSound("assets/gunshot",FMOD_DEFAULT,0,&sound1);
@@ -82,6 +99,9 @@ void AudioManager::loadSounds()
 
 	result = system->createStream("assets/bgm.wav", FMOD_DEFAULT, 0, &sound2);
 	result = sound2->setMode(FMOD_LOOP_OFF);
+
+	result = system->createStream("assets/bgm3.wav", FMOD_DEFAULT, 0, &sound5);
+	result = sound5->setMode(FMOD_LOOP_OFF);
 
 	result = system->createStream("assets/click.wav", FMOD_DEFAULT, 0, &sound3);
 	result = sound3->setMode(FMOD_LOOP_OFF);

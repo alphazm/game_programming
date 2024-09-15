@@ -21,13 +21,11 @@ private:
     float textScaleY = 0.4f;
     D3DXMATRIX scaleMatrix;
     D3DXMATRIX identityMatrix;
-    /*AudioManager* sounds;
-    AudioManager* myAudioManager = new AudioManager();*/
 public:
     PauseMenu(IDirect3DDevice9* device);
     ~PauseMenu();
 
-    void Initialize();
+    void Initialize(); 
     void Update(const BYTE* diKeys);
     void Render();
     int GetSelectedIndex() const { return selectedItemIndex; }

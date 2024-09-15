@@ -4,6 +4,7 @@
 #include "AudioManager.h"
 #include "Setting.h"
 #include "PauseMenu.h"
+#include "Lvl.h"
 
 enum class UIState {
     MAIN_MENU = 0,
@@ -21,6 +22,7 @@ private:
     PauseMenu* pauseMenu;
     AudioManager* myAudioManager = new AudioManager();
     UIState previousState;
+    Lvl* level;
 
 public:
     GameUI(IDirect3DDevice9* device);
