@@ -11,8 +11,8 @@ public:
 	bool isCollide(SpaceShip* spaceShip );
 	void inside(SpaceShip* spaceShip, RECT* field,D3DXVECTOR3* position);
 	void inside(Ball* ball, RECT* field, D3DXVECTOR3* position);
-	bool leftGoal(Ball* ball, RECT* goal, RECT* field, D3DXVECTOR3* position);
-	bool rightGoal(Ball* ball, RECT* goal, RECT* field, D3DXVECTOR3* position);
+	bool leftGoal(Ball* ball, RECT* goal, D3DXVECTOR3* position);
+	bool rightGoal(Ball* ball, RECT* goal,  D3DXVECTOR3* position);
 	void Circle(SpaceShip* spaceShip,SpaceShip* OtherSpaceShip);
 	void Circle(SpaceShip* spaceShip, Ball* ball);
 };

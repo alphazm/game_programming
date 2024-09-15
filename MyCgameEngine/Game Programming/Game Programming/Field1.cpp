@@ -51,7 +51,6 @@ void Field1::init()
 	player2->setPlayerNumber(1);
 	player2->setFriction(0.8);
 	ball->Initialize(device, D3DXVECTOR2(WIN_WIDTH / 2, WIN_HEIGHT / 2 ), 2);
-	ball->setFriction(0.3);
 	gameObjects.push_back(player1);
 	gameObjects.push_back(player2);
 	gameObjects.push_back(ball);
@@ -85,12 +84,42 @@ void Field1::update()
 		collider.inside(ball, &field, fieldPosition);
 		collider.inside(player1, &field, fieldPosition);
 		collider.inside(player2, &field, fieldPosition);
-		if (collider.leftGoal(ball, &goal1, &field, fieldPosition))
-			//player1 win
-			;
-		if (collider.rightGoal(ball, &goal2, &field, fieldPosition))
-			//player2 win
-			;
+		if (collider.leftGoal(ball, &goal1, gate1Position)) {
+			player1->position = D3DXVECTOR2(250, WIN_HEIGHT / 2);
+			player1->rotation = 1.57f;
+			player1->acceleration = { 0,0 };
+			player1->velocity = { 0,0 };
+			player2->position = D3DXVECTOR2(830, WIN_HEIGHT / 2);
+			player2->rotation = 4.71f;
+			player2->acceleration = { 0,0 };
+			player2->velocity = { 0,0 };
+			ball->position = D3DXVECTOR2(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+			ball->rotation = 0;
+			ball->velocity = { 0,0 };
+			Scorep2 += 1;
+		}
+		if (collider.rightGoal(ball, &goal2, gate2Position)) {
+			player1->position = D3DXVECTOR2(250, WIN_HEIGHT / 2);
+			player1->rotation = 1.57f;
+			player1->acceleration = { 0,0 };
+			player1->velocity = { 0,0 };
+			player2->position = D3DXVECTOR2(830, WIN_HEIGHT / 2);
+			player2->rotation = 4.71f;
+			player2->acceleration = { 0,0 };
+			player2->velocity = { 0,0 };
+			ball->position = D3DXVECTOR2(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+			ball->rotation = 0;
+			ball->velocity = { 0,0 };
+			Scorep2 += 1;
+		}
+		if (Scorep1 == 12) {
+			//p1 win
+			//game over scene
+		}
+		if (Scorep2 == 12) {
+			//p2 win
+			//game over scene
+		}
 		player1->direction = { (float)sin(player1->rotation),-(float)cos(player1->rotation) };
 		player1->acceleration = { player1->acceleration.x * player1->direction.x,  player1->acceleration.y * player1->direction.y };
 		player1->velocity += player1->acceleration;

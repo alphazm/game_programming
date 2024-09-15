@@ -39,5 +39,7 @@ private:
 	collider collider;
 	D3DXMATRIX mat;
 	FrameTimer* timer;
+	int Scorep1;
+	int Scorep2;
 };
 
