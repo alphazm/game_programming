@@ -51,6 +51,16 @@ void StateManager::changeGameState(int index)
 	currentState = scene[index];
 }
 
+void StateManager::initGameOver(IDirect3DDevice9* device) {
+	gameOverState = new GameOver(device);
+	gameOverState->Initialize();
+}
+
+void StateManager::setGameOverState(int winningPlayer) {
+	gameOverState->SetWinningPlayer(winningPlayer);
+	currentState = gameOverState;
+}
+
 StateManager::StateManager()
 {
 }
@@ -62,3 +72,4 @@ StateManager::~StateManager()
 	delete pTimer;
 	pTimer = NULL;
 }
+

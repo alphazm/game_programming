@@ -55,6 +55,7 @@ void Field1::init()
 	gameObjects.push_back(player2);
 	gameObjects.push_back(ball);
 	D3DXMatrixTransformation2D(&mat, NULL, NULL, NULL, NULL, NULL, NULL);
+
 }
 
 void Field1::update()
@@ -113,12 +114,14 @@ void Field1::update()
 			Scorep2 += 1;
 		}
 		if (Scorep1 == 12) {
-			//p1 win
-			//game over scene
+			StateManager::getInstance()->initGameOver(device);
+			StateManager::getInstance()->setGameOverState(1);
+			return;
 		}
 		if (Scorep2 == 12) {
-			//p2 win
-			//game over scene
+			StateManager::getInstance()->initGameOver(device);
+			StateManager::getInstance()->setGameOverState(2);
+			return;
 		}
 		player1->direction = { (float)sin(player1->rotation),-(float)cos(player1->rotation) };
 		player1->acceleration = { player1->acceleration.x * player1->direction.x,  player1->acceleration.y * player1->direction.y };
